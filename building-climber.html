@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Climber</title>
+    <link rel="stylesheet" href="building-climber.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="game-container">
+        <div id="ui-layer">
+            <div id="score-board">
+                <div class="score-item">LIFE: <span id="lives-container"></span></div>
+                <div class="score-item" id="mission-score-ui">PROGRESS: <span id="current-distance">0</span> / 1000m
+                </div>
+                <div class="score-item" id="challenge-score-ui" style="display:none;">SCORE: <span
+                        id="challenge-score">0</span></div>
+                <div class="score-item">SPEED: <span id="speed-display">0</span> km/h</div>
+            </div>
+            <div id="start-screen" class="active">
+                <h1>BUILDING CLIMBER</h1>
+                <p>Select Game Mode</p>
+                <div class="mode-buttons">
+                    <button class="mode-btn" onclick="selectMode('MISSION')">MISSION<br><span class="mode-desc">Reach
+                            1000m</span></button>
+                    <button class="mode-btn challenge" onclick="selectMode('CHALLENGE')">CHALLENGE<br><span
+                            class="mode-desc">Endless Score Attack</span></button>
+                    <button class="mode-btn ranking" onclick="showRanking()">RANKING<br><span class="mode-desc">View
+                            Leaderboard</span></button>
+                </div>
+
+                <div class="theme-select">
+                    <p>Select Theme</p>
+                    <div class="theme-buttons">
+                        <button class="theme-btn active" id="btn-light" onclick="setTheme('LIGHT')">LIGHT</button>
+                        <button class="theme-btn" id="btn-dark" onclick="setTheme('DARK')">DARK</button>
+                    </div>
+                </div>
+
+                <div id="player-name-container">
+                    <input type="text" id="player-name-input" placeholder="Enter Name" maxlength="8">
+                </div>
+            </div>
+
+            <div id="ranking-screen">
+                <h1>LEADERBOARD</h1>
+                <div class="ranking-tabs">
+                    <button class="tab-btn active" onclick="switchRankingTab('CHALLENGE')">CHALLENGE</button>
+                    <button class="tab-btn" onclick="switchRankingTab('MISSION')">MISSION</button>
+                </div>
+                <ul id="ranking-list">
+                    <!-- JS populates this -->
+                </ul>
+                <button class="back-btn" onclick="returnToStart()">BACK</button>
+            </div>
+
+            <div id="game-over-screen">
+                <h1>GAME OVER</h1>
+                <div id="result-mission">
+                    <p>Distance: <span id="final-distance">0</span>m</p>
+                </div>
+                <div id="result-challenge" style="display:none;">
+                    <p class="congrats">Score: <span id="final-challenge-score">0</span></p>
+                    <p>Best: <span id="final-best-score">0</span></p>
+                </div>
+                <p class="blink">Tap to Restart</p>
+            </div>
+
+            <div id="game-clear-screen">
+                <h1>MISSION COMPLETE!</h1>
+                <p class="congrats">You reached Top of the World!</p>
+                <p>Score: <span id="clear-score">1000</span>m</p>
+                <p class="blink">Press SPACE or TAP to Play Again</p>
+            </div>
+
+            <div id="mobile-controls">
+                <div class="control-group left-group">
+                    <button id="btn-up" class="control-btn">↑</button>
+                    <button id="btn-left" class="control-btn">←</button>
+                </div>
+                <div class="control-group right-group">
+                    <button id="btn-down" class="control-btn">↓</button>
+                    <button id="btn-right" class="control-btn">→</button>
+                </div>
+            </div>
+        </div>
+        <canvas id="gameCanvas"></canvas>
+    </div>
+    <script src="building-climber.js"></script>
+</body>
+
+</html>
